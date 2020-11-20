@@ -1,0 +1,5 @@
+led.c:20:6:LED_RedForceOn	8	static
+led.c:26:6:LED_RedOn	8	static
+led.c:38:6:LED_GreenOn	8	static
+led.c:48:6:LED_BlueOn	8	static
+led.c:59:6:LED_Process	8	static

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>SLCAN Test</title>
+    </head>
+    <body style="font-family: 'Courier New', Courier, monospace;">
+        <div style="text-align: center;">
+            <h1>SLCAN Test</h1>
+
+            <form>
+                <h2>Request Supported PIDs</h2>
+                <input type="button" value="0x0100" onclick="pid()">
+                <br/>
+                <h2>Request DTCs</h2>
+                <input type="button" value="0x03" onclick="dtc()">
+                <br/>
+                <h2>Request RPM</h2>
+                <input type="button" value="0x010C" onclick="rpm()">
+                <br/>
+                <h2>Request Speed</h2>
+                <input type="button" value="0x010D" onclick="spd()">
+            </form>
+        </div>
+
+
+        <script>
+            var ws = new WebSocket("ws://" + window.location.hostname + ":5678/")
+
+            ws.onmessage = function (event) {
+                console.log(event);
+
+                let response = JSON.parse(event.data);
+                let responseStr = "";
+                for (byte in response) {
+                    if (byte == 0) {
+                        responseStr += response[byte].toString(16);
+                    }
+                    else {
+                        responseStr += ", " + response[byte].toString(16);
+                    }
+                }
+
+                var messages = document.getElementsByTagName('ul')[0],
+                    message = document.createElement('li'),
+                    content = document.createTextNode(responseStr);
+                message.appendChild(content);
+                messages.appendChild(message);
+            };
+
+            function pid() {
+                ws.send("PIDS");
+            };
+
+            function dtc() {
+                ws.send("DTC");
+            };
+
+            function rpm() {
+                ws.send("RPM");
+            };
+
+            function spd() {
+                ws.send("SPEED");
+            };
+
+            messages = document.createElement('ul');
+            document.body.appendChild(messages);
+        </script>
+    </body>
+</html>

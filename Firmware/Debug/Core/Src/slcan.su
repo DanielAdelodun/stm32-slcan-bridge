@@ -1,0 +1,3 @@
+slcan.c:21:21:SLCAN_Parse_Frame	48	static
+slcan.c:111:21:SLCAN_Parse_Str	40	static
+slcan.c:471:6:ClearSLCAN	16	static

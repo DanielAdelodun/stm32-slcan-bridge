@@ -1,0 +1,5 @@
+can.c:13:22:CAN_SetFilter	24	static
+can.c:44:22:CAN_SetBitRate	16	static
+can.c:88:22:CAN_SetListen	16	static
+can.c:112:22:CAN_SetLoopback	16	static
+can.c:137:22:CAN_SetMode	16	static
